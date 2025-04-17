@@ -1,14 +1,23 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from io import StringIO
 
 def data_visualization_tool():
     print("📊 Data Visualization Tool")
 
-    # Load dataset
-    file = input("Enter the path to your CSV file: ")
+    # Embedded CSV data
+    csv_data = """
+Name,Age,Grade
+Alice,20,88
+Bob,21,75
+Charlie,19,90
+David,22,82
+    """
+    
+    # Load dataset from string
     try:
-        data = pd.read_csv(file)
+        data = pd.read_csv(StringIO(csv_data))
         print("\n✅ Dataset Loaded Successfully!")
         print("\n🧾 Available Columns:\n", data.columns.tolist())
 
@@ -35,8 +44,6 @@ def data_visualization_tool():
         plt.tight_layout()
         plt.show()
 
-    except FileNotFoundError:
-        print("❌ File not found. Please enter a valid path.")
     except Exception as e:
         print(f"⚠️ Error: {e}")
 
